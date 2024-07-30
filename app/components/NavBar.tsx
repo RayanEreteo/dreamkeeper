@@ -22,7 +22,7 @@ function NavBar() {
                 <TextLink href='/' >Articles</TextLink>
                 <TextLink href='/' >F.A.Q & Contact</TextLink>
             </Stack>
-            <ButtonMain color="linkedin" isLink={false}>Login</ButtonMain>
+            <ButtonMain color="linkedin" isLink={true} toWhere='/login'>Login</ButtonMain>
         </Flex>
     </nav>
   )

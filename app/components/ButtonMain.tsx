@@ -1,5 +1,4 @@
 import { Button } from "@chakra-ui/react";
-import { ColorSchemeEnum } from "next/dist/lib/metadata/types/metadata-types";
 
 interface buttonMainInterface {
   children: any;
@@ -10,7 +9,7 @@ interface buttonMainInterface {
 
 function ButtonMain({ children, color, isLink = false, toWhere = '/' }: buttonMainInterface) {
   if (isLink) {
-    return <Button colorScheme={color}><a href={toWhere}>{children}</a></Button>;
+    return <a href={toWhere}><Button colorScheme={color}>{children}</Button></a>;
   } else {
     return <Button colorScheme={color}>{children}</Button>;
   }

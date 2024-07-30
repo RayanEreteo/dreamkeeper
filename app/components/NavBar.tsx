@@ -4,8 +4,10 @@ import {
     Text,
     Stack,
     Heading,
-  } from '@chakra-ui/react'  
+    Button,
+  } from '@chakra-ui/react'
 import TextLink from './TextLink'
+import ButtonMain from './ButtonMain'
 
 function NavBar() {
   return (
@@ -14,12 +16,13 @@ function NavBar() {
             <Box className='title-container'>
                 <Heading color={"white"}>Dream Keeper</Heading>
             </Box>
-            <Stack direction={"row"} spacing={6}>
+            <Stack className='navbar-links-container' mr={"10rem"} direction={"row"} spacing={6}>
                 <TextLink href='/' >Home</TextLink>
                 <TextLink href='/' >Methods</TextLink>
                 <TextLink href='/' >Articles</TextLink>
                 <TextLink href='/' >F.A.Q & Contact</TextLink>
             </Stack>
+            <ButtonMain color="linkedin" isLink={false}>Login</ButtonMain>
         </Flex>
     </nav>
   )

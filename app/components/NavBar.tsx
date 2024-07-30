@@ -12,7 +12,7 @@ import ButtonMain from './ButtonMain'
 function NavBar() {
   return (
     <nav className='navbar'>
-        <Flex bg={"#52bfff"} w={"100vw"} h={"100px"} alignItems={"center"} justifyContent={"space-around"}>
+        <Flex bg={"#2274a3"} w={"100vw"} h={"100px"} alignItems={"center"} justifyContent={"space-around"}>
             <Box className='title-container'>
                 <Heading color={"white"}>Dream Keeper</Heading>
             </Box>

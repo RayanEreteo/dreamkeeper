@@ -2,11 +2,8 @@ import {
     Box,
     Flex,
     Text,
-    IconButton,
-    Button,
     Stack,
     Heading,
-    Link,
   } from '@chakra-ui/react'  
 import TextLink from './TextLink'
 

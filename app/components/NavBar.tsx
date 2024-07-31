@@ -16,7 +16,7 @@ function NavBar() {
             <Box className='title-container'>
                 <Heading color={"white"}>Dream Keeper</Heading>
             </Box>
-            <Stack className='navbar-links-container' mr={"10rem"} direction={"row"} spacing={6}>
+            <Stack className='navbar-links-container' mr={{base: "0rem", lg: "10rem"}} direction={"row"} spacing={6}>
                 <TextLink href='/' >Home</TextLink>
                 <TextLink href='/' >Methods</TextLink>
                 <TextLink href='/' >Articles</TextLink>

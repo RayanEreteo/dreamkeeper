@@ -2,12 +2,13 @@ import { Link } from "@chakra-ui/react"
 
 interface link{
     children: any,
-    href: string
+    href: string,
+    display?: object
 }
 
-function TextLink({children, href}: link) {
+function TextLink({children, href, display}: link) {
   return (
-    <Link href={href} color={"white"}>{children}</Link>
+    <Link display={display} href={href} color={"white"}>{children}</Link>
   )
 }
 

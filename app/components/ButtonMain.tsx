@@ -5,13 +5,14 @@ interface buttonMainInterface {
   color?: "facebook" | "linkedin";
   isLink?: boolean;
   toWhere?: string;
+  display?: object
 }
 
-function ButtonMain({ children, color, isLink = false, toWhere = '/' }: buttonMainInterface) {
+function ButtonMain({ children, color, isLink = false, toWhere = '/' , display}: buttonMainInterface) {
   if (isLink) {
-    return <a href={toWhere}><Button colorScheme={color}>{children}</Button></a>;
+    return <a href={toWhere}><Button display={display} colorScheme={color}>{children}</Button></a>;
   } else {
-    return <Button colorScheme={color}>{children}</Button>;
+    return <Button colorScheme={color} display={display}>{children}</Button>;
   }
 }
 

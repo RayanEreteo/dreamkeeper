@@ -3,7 +3,7 @@
 import { Box, Button, Flex, FormControl, FormHelperText, FormLabel, Heading, Input, Link, Text } from "@chakra-ui/react";
 import loginPageBG from "../../public/loginPageBG.jpg";
 
-function Login() {
+function Register() {
 
   return (
     <main className="login">
@@ -16,7 +16,7 @@ function Login() {
         alignItems={"center"}
         justifyContent={"center"}
       >
-        <Heading>LOGIN</Heading>
+        <Heading>REGISTER</Heading>
         <Box className="login-container" p={6} borderRadius={10}>
           <form>
             <FormControl>
@@ -31,11 +31,11 @@ function Login() {
             <br />
             <Button type="submit" colorScheme="facebook" w={"100%"}>Login</Button>
           </form>
-          <Text textAlign={"center"} mt={6}>No account ? <Link textDecoration={"underline"} href="/register">Register</Link></Text>
+          <Text textAlign={"center"} mt={6}>Already have an account ? <Link textDecoration={"underline"} href="/login">Login</Link></Text>
         </Box>
       </Flex>
     </main>
   );
 }
 
-export default Login;
+export default Register;

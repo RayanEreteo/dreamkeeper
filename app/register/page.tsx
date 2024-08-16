@@ -19,7 +19,7 @@ function Register() {
       const data = res.data
       setrequestData(data)
     } catch (error) {
-      //? Handle error
+      setrequestData({success: false, message: "A problem occured, please try again."})
     }finally{
       setLoading(false)
     }

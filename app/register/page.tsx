@@ -17,11 +17,14 @@ import {
 } from "@chakra-ui/react";
 import loginPageBG from "../../public/loginPageBG.webp";
 import axios from "axios";
-import { FormEvent, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 
 function Register() {
   const [loading, setLoading] = useState(false);
   const [requestData, setrequestData] = useState<any>();
+
+  const emailValue = useRef<HTMLInputElement>(null)
+  const passwordValue = useRef<HTMLInputElement>(null)
 
   async function registerUser(e: FormEvent) {
     e.preventDefault();
@@ -30,7 +33,7 @@ function Register() {
     try {
       const res = await axios.post(
         "http://localhost:8000/newUser",
-        { email: "rayabf5@gmail.com", password: "Nekosama123" },
+        { email: emailValue.current!.value, password: passwordValue.current!.value },
         { headers: { "Content-Type": "application/json" } }
       );
       const data = res.data;
@@ -61,7 +64,7 @@ function Register() {
           <form onSubmit={registerUser}>
             <FormControl>
               <FormLabel>Email address</FormLabel>
-              <Input type="email" isRequired />
+              <Input type="email" isRequired ref={emailValue}/>
               <FormHelperText color={"white"}>
                 Only for login purpose.
               </FormHelperText>
@@ -69,7 +72,7 @@ function Register() {
             <br />
             <FormControl>
               <FormLabel>Password</FormLabel>
-              <Input type="password" minLength={8} maxLength={40} isRequired />
+              <Input type="password" minLength={8} maxLength={40} isRequired ref={passwordValue} />
             </FormControl>
             <br />
             <FormControl>

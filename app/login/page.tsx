@@ -1,6 +1,6 @@
 "use client"
 
-import { Box, Button, Flex, FormControl, FormHelperText, FormLabel, Heading, Input, Link, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, FormControl, FormLabel, Heading, Input, Link, Text } from "@chakra-ui/react";
 import loginPageBG from "../../public/loginPageBG.webp";
 import axios from "axios";
 import { FormEvent, useState } from "react";

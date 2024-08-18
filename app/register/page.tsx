@@ -25,6 +25,7 @@ function Register() {
 
   const emailValue = useRef<HTMLInputElement>(null)
   const passwordValue = useRef<HTMLInputElement>(null)
+  const [dreamMemory, setdreamMemory] = useState("none")
 
   async function registerUser(e: FormEvent) {
     e.preventDefault();
@@ -33,7 +34,7 @@ function Register() {
     try {
       const res = await axios.post(
         "http://localhost:8000/newUser",
-        { email: emailValue.current!.value, password: passwordValue.current!.value },
+        { email: emailValue.current!.value, password: passwordValue.current!.value, dreamMemory:  dreamMemory},
         { headers: { "Content-Type": "application/json" } }
       );
       const data = res.data;
@@ -51,7 +52,6 @@ function Register() {
   return (
     <main className="login">
       <Flex
-        rel="preload"
         flexDirection={"column"}
         backgroundImage={`url(${loginPageBG.src})`}
         backgroundSize={"cover"}
@@ -77,13 +77,13 @@ function Register() {
             <br />
             <FormControl>
               <FormLabel>How many dreams can you remember a night ?</FormLabel>
-              <RadioGroup defaultValue="none">
+              <RadioGroup defaultValue="none" onChange={setdreamMemory}>
                 <Stack direction={"row"} spacing={6} justifyContent={"center"}>
                   <Radio value="none">None</Radio>
                   <Radio value="1">1</Radio>
                   <Radio value="2">2</Radio>
                   <Radio value="3">3</Radio>
-                  <Radio value="4">4 or more</Radio>
+                  <Radio value="4+">4 or more</Radio>
                 </Stack>
               </RadioGroup>
             </FormControl>

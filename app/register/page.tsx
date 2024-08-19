@@ -62,17 +62,17 @@ function Register() {
         <Heading>REGISTER</Heading>
         <Box className="login-container" p={6} borderRadius={10}>
           <form onSubmit={registerUser}>
-            <FormControl>
+            <FormControl isRequired>
               <FormLabel>Email address</FormLabel>
-              <Input type="email" isRequired ref={emailValue}/>
+              <Input type="email" ref={emailValue}/>
               <FormHelperText color={"white"}>
                 Only for login purpose.
               </FormHelperText>
             </FormControl>
             <br />
-            <FormControl>
+            <FormControl isRequired>
               <FormLabel>Password</FormLabel>
-              <Input type="password" minLength={8} maxLength={40} isRequired ref={passwordValue} />
+              <Input type="password" minLength={8} maxLength={40} ref={passwordValue} />
             </FormControl>
             <br />
             <FormControl>

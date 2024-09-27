@@ -41,7 +41,7 @@ function Login() {
           <form onSubmit={loginUser}>
             <FormControl>
               <FormLabel>Email address</FormLabel>
-              <Input type="email" required/>
+              <Input minLength={2} maxLength={40} type="email" required/>
             </FormControl>
             <br />
             <FormControl>

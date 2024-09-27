@@ -49,6 +49,7 @@ function NavBar() {
           top={{ base: "100px", md: "auto" }}
           bg={{ base: "#2274a3", md: "transparent" }}
           width={{ base: "100%", md: "auto" }}
+          mr={8}
         >
           <TextLink href="/">Home</TextLink>
           <TextLink href="/">Methods</TextLink>

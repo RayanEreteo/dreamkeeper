@@ -39,10 +39,10 @@ function Register() {
       );
       const data = res.data;
       setrequestData(data);
-    } catch (error) {
+    } catch (error: any) {
       setrequestData({
         success: false,
-        message: "A problem occured, please try again.",
+        message: error.response.data.message,
       });
     } finally {
       setLoading(false);

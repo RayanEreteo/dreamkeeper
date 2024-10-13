@@ -13,11 +13,14 @@ import {
 } from "@chakra-ui/react";
 import loginPageBG from "../../public/loginPageBG.webp";
 import axios from "axios";
-import { FormEvent, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 
 function Login() {
   const [loading, setLoading] = useState(false);
   const [requestData, setrequestData] = useState<any>();
+
+  const emailValue = useRef<HTMLInputElement>(null)
+  const passwordValue = useRef<HTMLInputElement>(null)
 
   async function loginUser(e: FormEvent) {
     e.preventDefault();
@@ -26,15 +29,16 @@ function Login() {
     try {
       const res = await axios.post(
         "http://localhost:8000/loginUser",
-        { email: "rayabf5@gmail.com", password: "Nekosama123" },
+        { email: emailValue.current!.value, password: passwordValue.current!.value },
         { headers: { "Content-Type": "application/json" } }
       );
       const data = res.data;
       setrequestData(data);
-    } catch (error) {
+    } catch (error: any) {
+      const message: string = error.code === "ERR_NETWORK" ? "Unable to reach server, please try again later." : error.response?.data?.message
       setrequestData({
         success: false,
-        message: "A problem occured, please try again.",
+        message: message,
       });
     } finally {
       setLoading(false);
@@ -57,12 +61,12 @@ function Login() {
           <form onSubmit={loginUser}>
             <FormControl>
               <FormLabel>Email address</FormLabel>
-              <Input minLength={2} maxLength={40} type="email" required />
+              <Input ref={emailValue} minLength={2} maxLength={40} type="email" required />
             </FormControl>
             <br />
             <FormControl>
               <FormLabel>Password</FormLabel>
-              <Input type="password" minLength={8} maxLength={40} required />
+              <Input ref={passwordValue} type="password" minLength={8} maxLength={40} required />
             </FormControl>
             <br />
             <Button

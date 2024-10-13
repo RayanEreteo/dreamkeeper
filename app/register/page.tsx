@@ -40,7 +40,7 @@ function Register() {
       const data = res.data;
       setrequestData(data);
     } catch (error: any) {
-        const message: string = error.code === "ERR_NETWORK" ? "Server down" : error.response?.data?.message ?? ""
+        const message: string = error.code === "ERR_NETWORK" ? "Unable to reach server, please try again later." : error.response?.data?.message
         setrequestData({
           success: false,
             message: message,

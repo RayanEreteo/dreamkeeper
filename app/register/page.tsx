@@ -41,7 +41,6 @@ function Register() {
       setrequestData(data);
     } catch (error: any) {
         const message: string = error.code === "ERR_NETWORK" ? "Server down" : error.response?.data?.message ?? ""
-
         setrequestData({
           success: false,
             message: message,

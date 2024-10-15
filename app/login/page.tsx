@@ -39,7 +39,8 @@ function Login() {
       const data = res.data;
       setrequestData(data);
 
-      user.username = "Rayan"
+      user.username = data.username
+      user.loggedIn = true
 
       router.push("/")
     }catch (error: any) {

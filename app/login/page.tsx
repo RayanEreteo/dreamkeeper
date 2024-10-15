@@ -1,5 +1,4 @@
 "use client";
-
 import {
   Box,
   Button,
@@ -13,9 +12,12 @@ import {
 } from "@chakra-ui/react";
 import loginPageBG from "../../public/loginPageBG.webp";
 import axios from "axios";
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useRef, useState, useContext } from "react";
+import { userInfoContext } from "../components/ContextProvider";
 
 function Login() {
+  const user = useContext(userInfoContext)
+
   const [loading, setLoading] = useState(false);
   const [requestData, setrequestData] = useState<any>();
 
@@ -44,6 +46,8 @@ function Login() {
       setLoading(false);
     }
   }
+
+  //! ajout des etoiles
 
   return (
     <main className="login">

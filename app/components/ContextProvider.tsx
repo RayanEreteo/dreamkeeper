@@ -1,8 +1,14 @@
 "use client"
+import { createContext, useState } from "react"
 
-function ContextProvider() {
+export const userInfoContext = createContext({})
+
+function ContextProvider({children}: any) {
+
   return (
-    <div>ContextProvider</div>
+    <userInfoContext.Provider value={{}}>
+        {children}
+    </userInfoContext.Provider>
   )
 }
 

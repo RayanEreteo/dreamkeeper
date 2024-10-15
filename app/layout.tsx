@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import ChakraProviderWrapper from "./components/ChakraProviderWrapper";
 import NavBar from "./components/NavBar";
+import ContextProvider from "./components/ContextProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,10 +19,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}><ChakraProviderWrapper>
-        <NavBar></NavBar>
-        {children}
-        </ChakraProviderWrapper></body>
+      <body className={inter.className}>
+        <ChakraProviderWrapper>
+          <ContextProvider>
+            <NavBar></NavBar>
+            {children}
+          </ContextProvider>
+        </ChakraProviderWrapper>
+      </body>
     </html>
   );
 }

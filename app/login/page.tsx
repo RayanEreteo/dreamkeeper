@@ -38,11 +38,10 @@ function Login() {
       );
       const data = res.data;
       setrequestData(data);
-      
-      if (data.success) {
-        router.push("/")
-      }
-     
+
+      user.username = "Rayan"
+
+      router.push("/")
     }catch (error: any) {
       const message: string = error.code === "ERR_NETWORK" ? "Unable to reach server, please try again later." : error.response?.data?.message
       setrequestData({

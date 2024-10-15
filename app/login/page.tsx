@@ -14,8 +14,10 @@ import loginPageBG from "../../public/loginPageBG.webp";
 import axios from "axios";
 import { FormEvent, useRef, useState, useContext } from "react";
 import { userInfoContext } from "../components/ContextProvider";
+import { useRouter } from "next/navigation";
 
 function Login() {
+  const router = useRouter()
   const user = useContext(userInfoContext)
 
   const [loading, setLoading] = useState(false);
@@ -36,7 +38,12 @@ function Login() {
       );
       const data = res.data;
       setrequestData(data);
-    } catch (error: any) {
+      
+      if (data.success) {
+        router.push("/")
+      }
+     
+    }catch (error: any) {
       const message: string = error.code === "ERR_NETWORK" ? "Unable to reach server, please try again later." : error.response?.data?.message
       setrequestData({
         success: false,

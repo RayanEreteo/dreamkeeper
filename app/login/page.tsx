@@ -30,7 +30,7 @@ function Login() {
       const res = await axios.post(
         "http://localhost:8000/loginUser",
         { email: emailValue.current!.value, password: passwordValue.current!.value },
-        { headers: { "Content-Type": "application/json" } }
+        { headers: { "Content-Type": "application/json" }, withCredentials: true },
       );
       const data = res.data;
       setrequestData(data);

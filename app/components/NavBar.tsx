@@ -64,7 +64,7 @@ function NavBar() {
           toWhere="/login"
           display={{ base: "none", md: "block" }}
         >
-          {localStorage.getItem("username") != "" ? "Dream Journal" : "Login"}
+          {localStorage.getItem("username") ? "Dream Journal" : "Login"}
         </ButtonMain>
       </Flex>
     </nav>

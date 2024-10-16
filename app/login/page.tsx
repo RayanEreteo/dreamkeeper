@@ -37,6 +37,8 @@ function Login() {
       const data = res.data;
       setrequestData(data);
 
+      localStorage.setItem("username", data.username)
+
       router.push("/")
     }catch (error: any) {
       const message: string = error.code === "ERR_NETWORK" ? "Unable to reach server, please try again later." : error.response?.data?.message

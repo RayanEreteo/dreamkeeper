@@ -75,7 +75,7 @@ function NavBar() {
         <ButtonMain
           color="linkedin"
           isLink={true}
-          toWhere="/login"
+          toWhere={user.username ? "/dreamjournal" : "/login"}
           display={{ base: "none", md: "block" }}
         >
           {user.username ? user.username : "Login"}

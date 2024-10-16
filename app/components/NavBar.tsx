@@ -13,6 +13,7 @@ import {
 import TextLink from "./TextLink";
 import ButtonMain from "./ButtonMain";
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
+import { useContext } from "react";
 
 function NavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -55,7 +56,7 @@ function NavBar() {
           <TextLink href="/">Methods</TextLink>
           <TextLink href="/">Articles</TextLink>
           <TextLink href="/">F.A.Q & Contact</TextLink>
-          <TextLink href="/login" display={{base: "block", lg: "none"}}>Login</TextLink>
+          <TextLink href="/login" display={{base: "block", lg: "none"}}>"Login</TextLink>
         </Stack>
         <ButtonMain
           color="linkedin"
@@ -63,7 +64,7 @@ function NavBar() {
           toWhere="/login"
           display={{ base: "none", md: "block" }}
         >
-          Login
+          {localStorage.getItem("username") != "" ? "Dream Journal" : "Login"}
         </ButtonMain>
       </Flex>
     </nav>

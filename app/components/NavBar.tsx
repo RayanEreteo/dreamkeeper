@@ -13,11 +13,25 @@ import {
 import TextLink from "./TextLink";
 import ButtonMain from "./ButtonMain";
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
-import { useContext } from "react";
+import { userInfoContext } from "./ContextProvider";
+import { useContext, useEffect } from "react";
 
 function NavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toggleMenu = () => (isOpen ? onClose() : onOpen());
+
+  const user = useContext(userInfoContext)
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem("username");
+    if (storedUsername) {
+      user.setUsername("test");
+      console.log(user.username)
+    }else{
+      user.setUsername("")
+    }
+  }, [user.username])
+  
 
   return (
     <nav className="navbar">
@@ -64,7 +78,7 @@ function NavBar() {
           toWhere="/login"
           display={{ base: "none", md: "block" }}
         >
-          {localStorage.getItem("username") ? "Dream Journal" : "Login"}
+          {user.username ? "Dream Journal" : "Login"}
         </ButtonMain>
       </Flex>
     </nav>

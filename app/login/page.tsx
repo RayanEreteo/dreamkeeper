@@ -14,8 +14,10 @@ import loginPageBG from "../../public/loginPageBG.webp";
 import axios from "axios";
 import { FormEvent, useRef, useState, useContext } from "react";
 import { useRouter } from "next/navigation";
+import { userInfoContext } from "../components/ContextProvider";
 
 function Login() {
+  const user = useContext(userInfoContext)
   const router = useRouter()
 
   const [loading, setLoading] = useState(false);
@@ -37,6 +39,7 @@ function Login() {
       const data = res.data;
       setrequestData(data);
 
+      user.setUsername(data.username)
       localStorage.setItem("username", data.username)
 
       router.push("/")

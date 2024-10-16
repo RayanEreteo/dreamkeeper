@@ -25,12 +25,12 @@ function NavBar() {
   useEffect(() => {
     const storedUsername = localStorage.getItem("username");
     if (storedUsername) {
-      user.setUsername("test");
+      user.setUsername(storedUsername);
       console.log(user.username)
     }else{
       user.setUsername("")
     }
-  }, [user.username])
+  }, [user.setUsername])
   
 
   return (
@@ -78,7 +78,7 @@ function NavBar() {
           toWhere="/login"
           display={{ base: "none", md: "block" }}
         >
-          {user.username ? "Dream Journal" : "Login"}
+          {user.username ? user.username : "Login"}
         </ButtonMain>
       </Flex>
     </nav>

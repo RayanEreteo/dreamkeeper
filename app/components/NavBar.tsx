@@ -21,16 +21,7 @@ function NavBar() {
   const toggleMenu = () => (isOpen ? onClose() : onOpen());
 
   const user = useContext(userInfoContext)
-
-  useEffect(() => {
-    const storedUsername = localStorage.getItem("username");
-    if (storedUsername) {
-      user.setUsername(storedUsername);
-      console.log(user.username)
-    }else{
-      user.setUsername("")
-    }
-  }, [user.setUsername])
+  const username = localStorage.getItem("username")
   
 
   return (
@@ -75,10 +66,10 @@ function NavBar() {
         <ButtonMain
           color="linkedin"
           isLink={true}
-          toWhere={user.username ? "/dreamjournal" : "/login"}
+          toWhere={username ? "/dreamjournal" : "/login"}
           display={{ base: "none", md: "block" }}
         >
-          {user.username ? user.username : "Login"}
+          {username ? username : "Login"}
         </ButtonMain>
       </Flex>
     </nav>

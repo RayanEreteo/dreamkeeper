@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import {
   Box,
@@ -14,15 +14,14 @@ import TextLink from "./TextLink";
 import ButtonMain from "./ButtonMain";
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import { userInfoContext } from "./ContextProvider";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 
 function NavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toggleMenu = () => (isOpen ? onClose() : onOpen());
-
-  const user = useContext(userInfoContext)
-  const username = localStorage.getItem("username")
   
+  // Initialize with localStorage value directly
+  const { username } = useContext(userInfoContext);
 
   return (
     <nav className="navbar">

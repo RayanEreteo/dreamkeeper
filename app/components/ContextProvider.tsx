@@ -1,21 +1,17 @@
 "use client";
-import { createContext, useState, ReactNode } from "react";
+import { createContext, useState } from "react";
 
 // Define the context with explicit types
-interface UserInfoContextType {
-  username: string;
-  setUsername: (name: string) => void;
-}
 
 // Create context with default values
-export const userInfoContext = createContext<UserInfoContextType>({
+export const userInfoContext = createContext({
   username: "",
-  setUsername: () => {}
+  setUsername: (username: string) => {}
 });
 
-function ContextProvider({ children }: { children: ReactNode }) {
+function ContextProvider({ children }: any) {
   // Initialize state with an empty string
-  const [username, setUsername] = useState<string>("");
+  const [username, setUsername] = useState<any>(localStorage.getItem("username"));
 
   return (
     <userInfoContext.Provider value={{ username, setUsername }}>
@@ -25,3 +21,31 @@ function ContextProvider({ children }: { children: ReactNode }) {
 }
 
 export default ContextProvider;
+
+// "use client";
+// import { createContext, useState, ReactNode } from "react";
+
+// // Define the context with explicit types
+// interface UserInfoContextType {
+//   username: string;
+//   setUsername: (name: string) => void;
+// }
+
+// // Create context with default values
+// export const userInfoContext = createContext<UserInfoContextType>({
+//   username: "",
+//   setUsername: () => {}
+// });
+
+// function ContextProvider({ children }: { children: ReactNode }) {
+//   // Initialize state with an empty string
+//   const [username, setUsername] = useState<string>("");
+
+//   return (
+//     <userInfoContext.Provider value={{ username, setUsername }}>
+//       {children}
+//     </userInfoContext.Provider>
+//   );
+// }
+
+// export default ContextProvider;

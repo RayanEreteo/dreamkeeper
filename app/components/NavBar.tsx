@@ -68,7 +68,7 @@ function NavBar() {
           toWhere={username ? "/dreamjournal" : "/login"}
           display={{ base: "none", md: "block" }}
         >
-          {username ? username : "Login"}
+          {username ? "Dream Journal" : "Login"}
         </ButtonMain>
       </Flex>
     </nav>

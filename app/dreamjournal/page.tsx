@@ -1,14 +1,19 @@
 "use client"
 
 import { Flex, Text } from '@chakra-ui/react'
-import React from 'react'
+import React, { useContext } from 'react'
 import ButtonMain from '../components/ButtonMain'
+import { useRouter } from 'next/navigation'
+import { userInfoContext } from '../components/ContextProvider'
 
 function Dreamjournal() {
+  const router = useRouter()
+  const user = useContext(userInfoContext)
 
   function logout() {
-    console.log("Logout");
-    
+    localStorage.removeItem("username");
+    user.setUsername("")
+    router.push("/login")
   }
 
   return (

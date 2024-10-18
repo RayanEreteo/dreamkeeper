@@ -4,13 +4,13 @@ import Dreamjournal from "./page";
 export const metadata: Metadata = {
     title: "Dream Keeper | Dream journal",
     description: "Access your dream journal.",
-  };
+};
 
 
-function DreamjournalLayout() {
+async function DreamjournalLayout() {
   return (
     <Dreamjournal></Dreamjournal>
-  )
+  ) 
 }
 
 export default DreamjournalLayout

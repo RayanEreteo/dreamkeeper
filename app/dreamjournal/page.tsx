@@ -5,14 +5,18 @@ import React, { useContext } from 'react'
 import ButtonMain from '../components/ButtonMain'
 import { useRouter } from 'next/navigation'
 import { userInfoContext } from '../components/ContextProvider'
+import axios from 'axios'
 
 function Dreamjournal() {
   const router = useRouter()
   const user = useContext(userInfoContext)
-
-  function logout() {
+  
+  async function logout() {
     localStorage.removeItem("username");
     user.setUsername("")
+
+    const res = await axios.post("http://localhost:8000/logout", {}, {withCredentials: true})
+
     router.push("/login")
   }
 

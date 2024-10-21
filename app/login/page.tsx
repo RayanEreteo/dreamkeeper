@@ -70,12 +70,12 @@ function Login() {
         <Heading>LOGIN</Heading>
         <Box className="login-container" p={6} borderRadius={10}>
           <form onSubmit={loginUser}>
-            <FormControl>
+            <FormControl isRequired>
               <FormLabel>Email address</FormLabel>
               <Input ref={emailValue} minLength={2} maxLength={40} type="email" required />
             </FormControl>
             <br />
-            <FormControl>
+            <FormControl isRequired>
               <FormLabel>Password</FormLabel>
               <Input ref={passwordValue} type="password" minLength={8} maxLength={40} required />
             </FormControl>

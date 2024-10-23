@@ -54,8 +54,6 @@ function Login() {
     }
   }
 
-  //! ajout des etoiles
-
   return (
     <main className="login">
       <Flex

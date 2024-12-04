@@ -33,12 +33,7 @@ function Dreamjournal() {
       <Flex flexDirection={"column"} justifyContent={"center"} alignItems={"center"} minH={"100vh"}>
         <Text color={"black"}>{"Authenticated as : " + localStorage.getItem("username")}</Text>
         <Text color={"#2274A3"} fontSize={"40px"}>Dream journal</Text>
-        <Flex className='dreams-container' minH={"200px"} minW={"30vw"} flexDirection={"column"} border={"black"} style={{border: "4px solid #2274A3"}}>
-          <DreamEntry></DreamEntry>
-          <DreamEntry></DreamEntry>
-          <DreamEntry></DreamEntry>
-          <DreamEntry></DreamEntry>
-        </Flex>
+        <Button onClick={logout}>Logout</Button>
       </Flex>
     </main>
   )

@@ -33,7 +33,7 @@ function Dreamjournal() {
       <Flex flexDirection={"column"} justifyContent={"center"} alignItems={"center"} minH={"100vh"}>
         <Text color={"black"}>{"Authenticated as : " + localStorage.getItem("username")}</Text>
         <Text color={"#2274A3"} fontSize={"40px"}>Dream journal</Text>
-        <Button onClick={logout}>Logout</Button>
+        <Button onClick={logout} isLoading={loading}>Logout</Button>
       </Flex>
     </main>
   )

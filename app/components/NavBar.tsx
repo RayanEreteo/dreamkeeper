@@ -49,19 +49,19 @@ function NavBar() {
             className="navbar-links-container"
             direction={{ base: "column", md: "row" }}
             spacing={6}
+            mr={"10rem"}
             display={{ base: isOpen ? "flex" : "none", md: "flex" }}
             alignItems={{ base: "center", md: "center" }}
             position={{ base: "absolute", md: "static" }}
             top={{ base: "100px", md: "auto" }}
             bg={{ base: "#2274a3", md: "transparent" }}
             width={{ base: "100%", md: "auto" }}
-            mr={8}
           >
             <TextLink href="/">Home</TextLink>
             <TextLink href="/">Methods</TextLink>
             <TextLink href="/">Articles</TextLink>
             <TextLink href="/">F.A.Q & Contact</TextLink>
-            <TextLink href="/login" display={{base: "block", lg: "none"}}>"Login</TextLink>
+            <TextLink href="/login" display={{base: "block", lg: "none"}}>Login</TextLink>
           </Stack>
           <ButtonMain
             color="linkedin"

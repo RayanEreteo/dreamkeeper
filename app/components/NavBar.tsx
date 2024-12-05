@@ -49,7 +49,7 @@ function NavBar() {
             className="navbar-links-container"
             direction={{ base: "column", md: "row" }}
             spacing={6}
-            mr={"10rem"}
+            mr={"5rem"}
             display={{ base: isOpen ? "flex" : "none", md: "flex" }}
             alignItems={{ base: "center", md: "center" }}
             position={{ base: "absolute", md: "static" }}

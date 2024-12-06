@@ -1,8 +1,13 @@
 import axios from "axios";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { ReactNode } from "react";
 
-async function NeedAuth({ children }: any) {
+interface NeedAuthProps {
+    children: ReactNode;
+}
+
+async function NeedAuth({ children }: NeedAuthProps) {
     const token = cookies().get("authToken");
 
     try {
@@ -11,7 +16,7 @@ async function NeedAuth({ children }: any) {
         });
 
         if (res.status === 200) {
-            return children
+            return <>{children}</>
         }
     } catch (error) {
         redirect("/login")

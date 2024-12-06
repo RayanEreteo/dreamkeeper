@@ -27,7 +27,6 @@ function NavBar() {
     return (
       <nav className="navbar">
         <Flex
-          position={"absolute"}
           zIndex={10}
           bg={"#2274a3"}
           w={"100vw"}

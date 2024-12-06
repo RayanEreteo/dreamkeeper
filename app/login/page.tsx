@@ -62,6 +62,7 @@ function Login() {
   return (
     <main className="login">
       <Flex
+        color={"white"}
         rel="preload"
         flexDirection={"column"}
         backgroundImage={`url(${loginPageBG.src})`}

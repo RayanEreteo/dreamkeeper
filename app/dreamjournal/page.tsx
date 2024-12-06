@@ -1,6 +1,6 @@
 "use client"
 
-import { Box, Button, Flex, Text } from '@chakra-ui/react'
+import { Box, Button, Checkbox, Flex, Input, Text, Textarea, VStack } from '@chakra-ui/react'
 import React, { useContext, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { userInfoContext } from '../components/ContextProvider'
@@ -30,11 +30,17 @@ function Dreamjournal() {
   }
 
   return (
-    <main className='dream-journal'>
-      <Flex flexDirection={"column"} justifyContent={"center"} alignItems={"center"} minH={"100vh"}>
+    <main id='dream-journal'>
+      <Flex color={"white"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"} minH={"100vh"}>
         <Text color={"black"}>{"Authenticated as : " + localStorage.getItem("username")}</Text>
-        <Button onClick={logout} isLoading={loading} mb={6} bg={"black"}><CiLogout size={25}/></Button>
+        <Button onClick={logout} isLoading={loading} mb={6} bg={"red"}><CiLogout color='white' size={25}/></Button>
         <Text color={"#2274A3"} fontSize={"40px"}>Dream journal</Text>
+        <VStack id='dream-form-container' color={"black"} mb={"6"} spacing={"10"}>
+          <Input placeholder='Dream name...'/>
+          <Textarea placeholder='Dream content...' resize={"none"} h={"200px"}/>
+          <Checkbox textColor={"black"}>Lucidity ?</Checkbox>
+          <Button colorScheme='linkedin' w={"200px"}>Add</Button>
+        </VStack>
         <Box id='dream-container'>
           <DreamEntry dreamName="Lucid dream" dreamDesc="This was a lucid dream !" isLucid={true}></DreamEntry>
           <DreamEntry dreamName="A non lucid dream" dreamDesc="This was unfortunately a non lucid dream" isLucid={false}></DreamEntry>

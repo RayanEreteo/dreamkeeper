@@ -57,6 +57,7 @@ function Register() {
   return (
     <main className="login">
       <Flex
+        color={"white"}
         flexDirection={"column"}
         backgroundImage={`url(${loginPageBG.src})`}
         backgroundSize={"cover"}

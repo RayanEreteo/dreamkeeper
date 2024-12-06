@@ -24,7 +24,7 @@ function Dreamjournal() {
       if(res.status === 200){
         router.push("/login")
       }
-    } finally{
+    } catch {
       setLoading(false)
     }
   }

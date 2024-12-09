@@ -1,6 +1,6 @@
 "use client"
 
-import { Box, Button, Checkbox, Flex, Input, Text, Textarea, VStack } from '@chakra-ui/react'
+import { Box, Button, Checkbox, Flex, HStack, Input, Text, Textarea, VStack } from '@chakra-ui/react'
 import React, { useContext, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { userInfoContext } from '../components/ContextProvider'
@@ -13,15 +13,15 @@ function Dreamjournal() {
   const user = useContext(userInfoContext)
 
   const [loading, setLoading] = useState(false);
-  
+
   async function logout() {
     setLoading(true)
     localStorage.removeItem("username");
     user.setUsername("")
 
     try {
-      const res = await axios.post("http://localhost:8000/logout", {}, {withCredentials: true})
-      if(res.status === 200){
+      const res = await axios.post("http://localhost:8000/logout", {}, { withCredentials: true })
+      if (res.status === 200) {
         router.push("/login")
       }
     } catch {
@@ -33,18 +33,22 @@ function Dreamjournal() {
     <main id='dream-journal'>
       <Flex color={"white"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"} minH={"100vh"}>
         <Text color={"black"}>{"Authenticated as : " + localStorage.getItem("username")}</Text>
-        <Button onClick={logout} isLoading={loading} mb={6} bg={"red"}><CiLogout color='white' size={25}/></Button>
-        <Text color={"#2274A3"} fontSize={"40px"}>Dream journal</Text>
-        <VStack id='dream-form-container' color={"black"} mb={"6"} spacing={"10"}>
-          <Input placeholder='Dream name...'/>
-          <Textarea placeholder='Dream content...' resize={"none"} h={"200px"}/>
-          <Checkbox textColor={"black"}>Lucidity ?</Checkbox>
-          <Button colorScheme='linkedin' w={"200px"}>Add</Button>
-        </VStack>
-        <Box id='dream-container'>
-          <DreamEntry dreamName="Lucid dream" dreamDesc="This was a lucid dream !" isLucid={true}></DreamEntry>
-          <DreamEntry dreamName="A non lucid dream" dreamDesc="This was unfortunately a non lucid dream" isLucid={false}></DreamEntry>
-        </Box>
+        <Button onClick={logout} isLoading={loading} mb={6} bg={"red"}><CiLogout color='white' size={25} /></Button>
+        <Text color={"#2274A3"} fontSize={"40px"} textDecoration={"underline"}>Dream journal</Text>
+        <HStack id='content' spacing={"40rem"} alignItems={"flex-start"} ml={"10vw"}>
+          <Box id='form-section'>
+            <VStack id='dream-form-container' color={"black"} mb={"6"} spacing={"10"}>
+              <Input placeholder='Dream name...' />
+              <Textarea placeholder='Dream content...' resize={"none"} h={"200px"} />
+              <Checkbox textColor={"black"}>Lucidity ?</Checkbox>
+              <Button colorScheme='linkedin' w={"200px"}>Add</Button>
+            </VStack>
+          </Box>
+          <Box id='dream-section'>
+            <DreamEntry dreamName="Lucid dream" dreamDesc="This was a lucid dream !" isLucid={true}></DreamEntry>
+            <DreamEntry dreamName="A non lucid dream" dreamDesc="This was unfortunately a non lucid dream" isLucid={false}></DreamEntry>
+          </Box>
+        </HStack>
       </Flex>
     </main>
   )

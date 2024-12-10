@@ -70,7 +70,7 @@ function Register() {
           <form onSubmit={registerUser}>
             <FormControl isRequired>
               <FormLabel>Email address</FormLabel>
-              <Input maxLength={40} minLength={2} type="email" ref={emailValue}/>
+              <Input minLength={2} maxLength={40} type="email" ref={emailValue}/>
               <FormHelperText color={"white"}>
                 Only for login purpose.
               </FormHelperText>

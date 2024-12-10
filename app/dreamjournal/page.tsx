@@ -1,6 +1,6 @@
 "use client"
 
-import { Box, Button, Checkbox, Flex, HStack, Input, Text, Textarea, VStack } from '@chakra-ui/react'
+import { Box, Button, Checkbox, Flex, FormControl, HStack, Input, Text, Textarea, VStack } from '@chakra-ui/react'
 import React, { useContext, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { userInfoContext } from '../components/ContextProvider'
@@ -37,12 +37,18 @@ function Dreamjournal() {
         <Text color={"#2274A3"} fontSize={"40px"} textDecoration={"underline"}>Dream journal</Text>
         <HStack id='content' spacing={"40rem"} alignItems={"flex-start"} ml={"10vw"}>
           <Box id='form-section'>
-            <VStack id='dream-form-container' color={"black"} mb={"6"} spacing={"10"}>
-              <Input placeholder='Dream name...'  minLength={5} maxLength={30} required/>
-              <Textarea placeholder='Dream content...' resize={"none"} h={"200px"} minLength={5} maxLength={200} required/>
-              <Checkbox textColor={"black"}>Lucidity ?</Checkbox>
-              <Button colorScheme='linkedin' w={"200px"}>Add</Button>
-            </VStack>
+            <form action="">
+              <VStack id='dream-form-container' color={"black"} mb={"6"} spacing={"10"}>
+                <FormControl isRequired>
+                  <Input placeholder='Dream name...' minLength={5} maxLength={30} />
+                </FormControl>
+                <FormControl isRequired>
+                  <Textarea placeholder='Dream content...' resize={"none"} h={"200px"} minLength={5} maxLength={200} />
+                </FormControl>
+                <Checkbox textColor={"black"}>Lucidity ?</Checkbox>
+                <Button colorScheme='linkedin' w={"200px"} type='submit'>Add</Button>
+              </VStack>
+            </form>
           </Box>
           <Box id='dream-section'>
             <DreamEntry dreamName="Lucid dream" dreamDesc="This was a lucid dream !" isLucid={true}></DreamEntry>

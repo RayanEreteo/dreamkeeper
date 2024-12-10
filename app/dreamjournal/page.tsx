@@ -38,8 +38,8 @@ function Dreamjournal() {
         <HStack id='content' spacing={"40rem"} alignItems={"flex-start"} ml={"10vw"}>
           <Box id='form-section'>
             <VStack id='dream-form-container' color={"black"} mb={"6"} spacing={"10"}>
-              <Input placeholder='Dream name...' />
-              <Textarea placeholder='Dream content...' resize={"none"} h={"200px"} />
+              <Input placeholder='Dream name...'  minLength={5} maxLength={30} required/>
+              <Textarea placeholder='Dream content...' resize={"none"} h={"200px"} minLength={5} maxLength={200} required/>
               <Checkbox textColor={"black"}>Lucidity ?</Checkbox>
               <Button colorScheme='linkedin' w={"200px"}>Add</Button>
             </VStack>

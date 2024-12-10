@@ -29,7 +29,7 @@ function Login() {
 
   useEffect(() => {
     const urlParam = new URLSearchParams(window.location.search);
-    setUrlParamValue(urlParam.get("validation")!);
+    setUrlParamValue(urlParam.get("freshCreation")!);
   })
 
   async function loginUser(e: FormEvent) {
@@ -108,7 +108,7 @@ function Login() {
           </Text>
         </Box>
         <Flex alignItems={"center"} justifyContent={"center"} w={"100vw"} bg={"green"} pos={"relative"} top={"40px"}>
-          <Text>{urlParamValue}</Text>
+          <Text>{urlParamValue == "1" ? "Your account is created, you can now login." : ""}</Text>
         </Flex>
       </Flex>
     </main>

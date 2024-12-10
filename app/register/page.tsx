@@ -43,7 +43,7 @@ function Register() {
       const data = res.data;
       setrequestData(data);
 
-      router.push("/login?validation=Account+created+you+can+now+login.")
+      router.push("/login?freshCreation=1")
     } catch (error: any) {
         const message: string = error.code === "ERR_NETWORK" ? "Unable to reach server, please try again later." : error.response?.data?.message
         setrequestData({

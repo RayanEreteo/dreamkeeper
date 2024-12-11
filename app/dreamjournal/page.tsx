@@ -1,7 +1,7 @@
 "use client"
 
 import { Box, Button, Checkbox, Flex, FormControl, HStack, Input, Text, Textarea, VStack } from '@chakra-ui/react'
-import React, { useContext, useState } from 'react'
+import React, { FormEvent, useContext, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { userInfoContext } from '../components/ContextProvider'
 import axios from 'axios'
@@ -13,6 +13,10 @@ function Dreamjournal() {
   const user = useContext(userInfoContext)
 
   const [loading, setLoading] = useState(false);
+
+  function addDreamEntry(e: FormEvent){
+    e.preventDefault()
+  }
 
   async function logout() {
     setLoading(true)
@@ -37,7 +41,7 @@ function Dreamjournal() {
         <Text color={"#2274A3"} fontSize={"40px"} textDecoration={"underline"}>Dream journal</Text>
         <HStack id='content' spacing={"40rem"} alignItems={"flex-start"} ml={"10vw"}>
           <Box id='form-section'>
-            <form action="">
+            <form action="" onSubmit={addDreamEntry}>
               <VStack id='dream-form-container' color={"black"} mb={"6"} spacing={"10"}>
                 <FormControl isRequired>
                   <Input placeholder='Dream name...' minLength={5} maxLength={30} />

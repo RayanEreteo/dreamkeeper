@@ -2,6 +2,7 @@ import axios from "axios";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { ReactNode } from "react";
+import ServerError from "./ServerError";
 
 interface NeedAuthProps {
     children: ReactNode;
@@ -18,8 +19,12 @@ async function NeedAuth({ children }: NeedAuthProps) {
         if (res.status === 200) {
             return <>{children}</>
         }
-    } catch (error) {
-        redirect("/login")
+    } catch (error: any) {
+        if (error.code === "ECONNREFUSED") {
+            return <ServerError />
+        }
+        
+        redirect("/login")   
     }
 }
 

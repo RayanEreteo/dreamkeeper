@@ -36,7 +36,7 @@ function Dreamjournal() {
   return (
     <main id='dream-journal'>
       <Flex color={"white"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"} minH={"100vh"}>
-        <Text color={"black"}>{"Authenticated as : " + localStorage.getItem("username")}</Text>
+        <Text color={"black"} mb={6}>{"Authenticated as : " + localStorage.getItem("username")}</Text>
         <Button onClick={logout} isLoading={loading} mb={6} bg={"red"}><CiLogout color='white' size={25} /></Button>
         <Text color={"#2274A3"} fontSize={"40px"} textDecoration={"underline"}>Dream journal</Text>
         <HStack id='content' spacing={"40rem"} alignItems={"flex-start"} ml={"10vw"}>

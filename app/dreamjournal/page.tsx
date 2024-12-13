@@ -39,7 +39,7 @@ function Dreamjournal() {
         <Text color={"black"} mb={6} fontWeight={"bolder"}>{"Authenticated as : " + localStorage.getItem("username")}</Text>
         <Button onClick={logout} isLoading={loading} mb={6} bg={"red"}><CiLogout color='white' size={25} /></Button>
         <Text color={"#2274A3"} fontSize={"40px"} textDecoration={"underline"}>Dream journal</Text>
-        <HStack id='content' spacing={"40rem"} alignItems={"flex-start"} ml={"10vw"} mt={"5rem"}>
+        <HStack id='content' spacing={"10rem"} alignItems={"flex-start"} ml={"10vw"} mt={"5rem"}>
           <Box id='form-section'>
             <form action="" onSubmit={addDreamEntry}>
               <VStack id='dream-form-container' color={"black"} mb={"6"} spacing={"10"}>

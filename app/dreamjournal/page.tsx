@@ -1,7 +1,7 @@
 "use client"
 
 import { Box, Button, Checkbox, Flex, FormControl, HStack, Input, Text, Textarea, VStack } from '@chakra-ui/react'
-import React, { FormEvent, useContext, useState } from 'react'
+import React, { FormEvent, useContext, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { userInfoContext } from '../components/ContextProvider'
 import axios from 'axios'
@@ -12,10 +12,33 @@ function Dreamjournal() {
   const router = useRouter()
   const user = useContext(userInfoContext)
 
-  const [loading, setLoading] = useState(false);
+  const dreamNameValue = useRef<HTMLInputElement>(null)
+  const dreamContentValue = useRef<HTMLTextAreaElement>(null)
+  const [isLucid, setIsLucid] = useState<boolean>(false)
 
-  function addDreamEntry(e: FormEvent){
+  const [loading, setLoading] = useState(false);
+  const [requestData, setrequestData] = useState<any>();
+
+  async function addDreamEntry(e: FormEvent) {
     e.preventDefault()
+    setLoading(true)
+
+    try {
+      const res = await axios.post("http://localhost:8000/addDream",
+      { dreamName: dreamNameValue.current!.value, dreamContent: dreamContentValue.current!.value, isLucid: isLucid }, 
+      {headers: { "Content-Type": "application/json" }, withCredentials: true })
+
+      const data = res.data
+
+      dreamNameValue.current!.value = ""
+      dreamContentValue.current!.value = ""
+
+      setrequestData(data)
+    } catch (error: any) {
+      console.log(error);
+    } finally {
+      setLoading(false)
+    }
   }
 
   async function logout() {
@@ -44,13 +67,13 @@ function Dreamjournal() {
             <form action="" onSubmit={addDreamEntry}>
               <VStack id='dream-form-container' color={"black"} mb={"6"} spacing={"10"}>
                 <FormControl isRequired>
-                  <Input placeholder='Dream name...' minLength={5} maxLength={30} />
+                  <Input placeholder='Dream name...' minLength={5} maxLength={30} ref={dreamNameValue} />
                 </FormControl>
                 <FormControl isRequired>
-                  <Textarea placeholder='Dream content...' resize={"none"} h={"200px"} minLength={5} maxLength={200} />
+                  <Textarea placeholder='Dream content...' resize={"none"} h={"200px"} minLength={5} maxLength={500} ref={dreamContentValue} />
                 </FormControl>
-                <Checkbox textColor={"black"}>Lucidity ?</Checkbox>
-                <Button colorScheme='linkedin' w={"200px"} type='submit'>Add</Button>
+                <Checkbox textColor={"black"} onChange={(e) => setIsLucid(e.target.checked)}>Lucidity ?</Checkbox>
+                <Button colorScheme='linkedin' w={"200px"} type='submit' isLoading={loading}>Add</Button>
               </VStack>
             </form>
           </Box>

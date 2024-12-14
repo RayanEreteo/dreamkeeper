@@ -20,12 +20,12 @@ function Login() {
   const user = useContext(userInfoContext)
   const router = useRouter()
 
+  const emailValue = useRef<HTMLInputElement>(null)
+  const passwordValue = useRef<HTMLInputElement>(null)
+
   const [loading, setLoading] = useState(false);
   const [requestData, setrequestData] = useState<any>();
   const [urlParamValue, setUrlParamValue] = useState<String>("")
-
-  const emailValue = useRef<HTMLInputElement>(null)
-  const passwordValue = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     const urlParam = new URLSearchParams(window.location.search);

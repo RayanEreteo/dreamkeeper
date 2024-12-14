@@ -25,8 +25,8 @@ function Dreamjournal() {
 
     try {
       const res = await axios.post("http://localhost:8000/addDream",
-      { dreamName: dreamNameValue.current!.value, dreamContent: dreamContentValue.current!.value, isLucid: isLucid }, 
-      {headers: { "Content-Type": "application/json" }, withCredentials: true })
+        { dreamName: dreamNameValue.current!.value, dreamContent: dreamContentValue.current!.value, isLucid: isLucid },
+        { headers: { "Content-Type": "application/json" }, withCredentials: true })
 
       const data = res.data
 
@@ -73,6 +73,13 @@ function Dreamjournal() {
                   <Textarea placeholder='Dream content...' resize={"none"} h={"200px"} minLength={5} maxLength={500} ref={dreamContentValue} />
                 </FormControl>
                 <Checkbox textColor={"black"} onChange={(e) => setIsLucid(e.target.checked)}>Lucidity ?</Checkbox>
+                <Text
+                  textAlign={"center"}
+                  mt={3}
+                  color={requestData?.success ? "green" : "red"}
+                >
+                  {requestData?.message}
+                </Text>
                 <Button colorScheme='linkedin' w={"200px"} type='submit' isLoading={loading}>Add</Button>
               </VStack>
             </form>

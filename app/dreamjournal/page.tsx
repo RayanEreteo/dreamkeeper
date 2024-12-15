@@ -35,7 +35,8 @@ function Dreamjournal() {
 
       setrequestData(data)
     } catch (error: any) {
-      console.log(error);
+      const message: string = error.code === "ERR_NETWORK" ? "Unable to reach server, please try again later." : error.response?.data?.message
+      setrequestData({success: false, message: message})
     } finally {
       setLoading(false)
     }

@@ -1,7 +1,7 @@
 "use client"
 
 import { Box, Button, Checkbox, Flex, FormControl, HStack, Input, Text, Textarea, VStack } from '@chakra-ui/react'
-import React, { FormEvent, useContext, useRef, useState } from 'react'
+import React, { FormEvent, useContext, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { userInfoContext } from '../components/ContextProvider'
 import axios from 'axios'
@@ -17,7 +17,26 @@ function Dreamjournal() {
   const [isLucid, setIsLucid] = useState<boolean>(false)
 
   const [loading, setLoading] = useState(false);
-  const [requestData, setrequestData] = useState<any>();
+  const [addDreamRequestData, setaddDreamRequestData] = useState<any>();
+  const [dreamRequestData, setdreamRequestData] = useState<any>();
+
+
+
+  async function getUserDream() {
+    try {
+      const res = await axios.get("http://localhost:8000/getDream", { headers: { "Content-Type": "application/json" }, withCredentials: true })
+
+      const data = res.data
+      setdreamRequestData(data)
+    } catch (error: any) {
+      const message: string = error.code === "ERR_NETWORK" ? "Unable to reach server, please try again later." : error.response?.data?.message
+      setdreamRequestData({ success: false, message: message })
+    }
+  }
+
+  useEffect(() => {
+    getUserDream()
+  }, [])
 
   async function addDreamEntry(e: FormEvent) {
     e.preventDefault()
@@ -33,10 +52,10 @@ function Dreamjournal() {
       dreamNameValue.current!.value = ""
       dreamContentValue.current!.value = ""
 
-      setrequestData(data)
+      setaddDreamRequestData(data)
     } catch (error: any) {
       const message: string = error.code === "ERR_NETWORK" ? "Unable to reach server, please try again later." : error.response?.data?.message
-      setrequestData({success: false, message: message})
+      setaddDreamRequestData({ success: false, message: message })
     } finally {
       setLoading(false)
     }
@@ -77,17 +96,18 @@ function Dreamjournal() {
                 <Text
                   textAlign={"center"}
                   mt={3}
-                  color={requestData?.success ? "green" : "red"}
+                  color={addDreamRequestData?.success ? "green" : "red"}
                 >
-                  {requestData?.message}
+                  {addDreamRequestData?.message}
                 </Text>
                 <Button colorScheme='linkedin' w={"200px"} type='submit' isLoading={loading}>Add</Button>
               </VStack>
             </form>
           </Box>
           <Box id='dream-section'>
-            <DreamEntry dreamName="Lucid dream" dreamDesc="This was a lucid dream !" isLucid={true}></DreamEntry>
-            <DreamEntry dreamName="A non lucid dream" dreamDesc="This was unfortunately a non lucid dream" isLucid={false}></DreamEntry>
+            {dreamRequestData?.data?.map((dream: any, index: number) => (
+              <DreamEntry key={index} dreamName={dream.dreamName} dreamDesc={dream.dreamContent} isLucid={dream.isLucid} />
+            ))}
           </Box>
         </HStack>
       </Flex>

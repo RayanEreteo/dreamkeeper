@@ -20,8 +20,6 @@ function Dreamjournal() {
   const [addDreamRequestData, setaddDreamRequestData] = useState<any>();
   const [dreamRequestData, setdreamRequestData] = useState<any>();
 
-
-
   async function getUserDream() {
     try {
       const res = await axios.get("http://localhost:8000/getDream", { headers: { "Content-Type": "application/json" }, withCredentials: true })
